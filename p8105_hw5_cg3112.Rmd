@@ -48,9 +48,19 @@ p2 <- map(working, read_csv) %>%
   mutate(
     name = working
   ) %>%
-  separate(name, c("subject", "arm"), sep= "_") %>%
-    pivot_longer(week_1:week_8,
+  separate(name, c("subject", "arm"), sep = "_") %>%
+    pivot_longer(
+      week_1:week_8,
                names_to = "week",
-               values_to="values") 
+               values_to = "values"
+      ) %>%
+  mutate(
+    arm = str_remove(arm, ".csv"),
+    arm = as.numeric(arm),
+    week = str_remove(week, "week_"),
+    week = as.numeric(week)
+  )
+
+
 ```
 
