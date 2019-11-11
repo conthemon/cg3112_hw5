@@ -9,6 +9,8 @@ library(dplyr)
 library(p8105.datasets)
 ```
 
+
+## Problem 1
 ```{r}
 library(tidyverse)
 
@@ -33,5 +35,22 @@ input_missing <- function(x) {
 
 iris_filled <-  map(.x = iris_with_missing, ~ input_missing(.x)) %>% as.data.frame()
 
+```
+
+## Problem 2
+```{r}
+setwd("./p2")
+
+working <- list.files()
+ 
+p2 <- map(working, read_csv) %>%
+  bind_rows() %>%
+  mutate(
+    name = working
+  ) %>%
+  separate(name, c("subject", "arm"), sep= "_") %>%
+    pivot_longer(week_1:week_8,
+               names_to = "week",
+               values_to="values") 
 ```
 
