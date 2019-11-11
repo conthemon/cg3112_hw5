@@ -70,3 +70,33 @@ plots <- p2 %>% select(subject, arm, week, values ) %>%
 plots  
 ```
 
+## Problem 3
+```{r}
+
+
+
+sim_regression = function(n, beta0 = 2, beta1 = 0) {
+  
+  sim_data = tibble(
+    x = rnorm(n, mean = 1, sd = 1),
+    y = beta0 + beta1*x + rnorm(n, 0, 1)
+  )
+  
+  ls_fit = lm(y ~ x, data = sim_data) 
+  
+  tibble(
+    pvalue = coef(ls_fit)[1],
+    beat1_hat = coef(ls_fit)[2]
+  )
+}
+
+output = vector("list", 10000)
+
+for (i in 1:10000) {
+  output[[i]] = sim_regression(30)
+} 
+
+ls_fit_try = lm(y ~ x, data = )
+
+```
+
