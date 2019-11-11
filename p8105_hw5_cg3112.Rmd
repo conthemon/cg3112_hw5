@@ -61,13 +61,12 @@ p2 <- map(working, read_csv) %>%
     week = as.factor(week)
   )
 
-head(p2)
 
 plots <- p2 %>% select(subject, arm, week, values ) %>%
   ggplot(aes(x = week, y = values, group=interaction(subject,arm), color = arm)) +
   geom_line() + 
   geom_point() 
 
-  
+plots  
 ```
 
